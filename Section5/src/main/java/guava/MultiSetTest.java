@@ -17,10 +17,7 @@ public class MultiSetTest {
         Multiset<Character> multiset = HashMultiset.create();
         // String转换成数组
         char[] chars = text.toCharArray();
-        Chars.asList(chars).stream()
-                .forEach(item -> {
-                    multiset.add(item);
-                });
+        multiset.addAll(Chars.asList(chars));
 
         System.out.println("容量" + multiset.size());
         System.out.println("统计一字,出现的次数" + multiset.count('一'));
