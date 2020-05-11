@@ -20,6 +20,8 @@
         <module>Section4</module>
         <module>Section5</module>
         <module>Section6</module>
+        <module>Section7</module>
+        <module>Section8</module>
     </modules>
 
 
@@ -44,6 +46,14 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>28.0-jre</version>
+        </dependency>
+
+        <!--Lombok Provided表示代码运行在编译时期-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.18</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
