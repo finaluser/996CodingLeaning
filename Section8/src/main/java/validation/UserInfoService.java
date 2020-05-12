@@ -1,5 +1,7 @@
 package validation;
 
+import javax.validation.Valid;
+
 /**
  * 用户信息的服务类
  */
@@ -9,7 +11,7 @@ public class UserInfoService {
      *
      * @param userInfo
      */
-    public void setUserInfo(UserInfo userInfo) {
+    public void setUserInfo(@Valid UserInfo userInfo) {
 
     }
 
@@ -18,7 +20,7 @@ public class UserInfoService {
      *
      * @return
      */
-    public UserInfo getUserInfo() {
+    public @Valid UserInfo getUserInfo() {
         return new UserInfo();
     }
 
@@ -32,7 +34,7 @@ public class UserInfoService {
      * 接收UserInfo的构造
      * @param userInfo
      */
-    public UserInfoService(UserInfo userInfo) {
+    public UserInfoService(@Valid UserInfo userInfo) {
 
     }
 }

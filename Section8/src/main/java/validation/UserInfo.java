@@ -71,6 +71,7 @@ public class UserInfo {
     /**
      * 手机号码
      */
+    @Phone(message = "手机号不是132开头的")
     private String phone;
 
     /**

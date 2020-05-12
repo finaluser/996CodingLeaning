@@ -8,6 +8,9 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.executable.ExecutableValidator;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.*;
 
 /**
@@ -20,6 +23,8 @@ public class ValidationTest {
     private UserInfo userInfo;
     // 验证结果集合
     private Set<ConstraintViolation<UserInfo>> set;
+    // 验证结果集合
+    private Set<ConstraintViolation<UserInfoService>> otherSet;
 
     /**
      * 初始化
@@ -33,6 +38,7 @@ public class ValidationTest {
 //        userInfo.setUserId("001");
         userInfo.setUserName(" ");
         userInfo.setPassword("123456");
+        userInfo.setPhone("13278788989");
 //        userInfo.setEmail("asdasd@qq.com");
         userInfo.setAge(19);
         Calendar calendar = Calendar.getInstance();
@@ -85,7 +91,53 @@ public class ValidationTest {
      * 对方法输入参数进行约束注解校验
      */
     @Test
-    public void paramValidation() {
+    public void paramValidation() throws NoSuchMethodException {
+        // 获取校验执行器
         ExecutableValidator executableValidator = validator.forExecutables();
+        UserInfoService service = new UserInfoService();
+        // 获取待验证方法
+        Method method = service.getClass().getMethod("setUserInfo", UserInfo.class);
+        // 获取方法的输入参数
+        Object[] paramObjects = new Object[]{new UserInfo()};
+
+        // 对方法的输入参数进行校验
+        otherSet = executableValidator.validateParameters(service, method, paramObjects);
+    }
+
+    /**
+     * 对方法返回值进行校验
+     */
+    @Test
+    public void returnValueValidation() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        // 获取校验执行器
+        ExecutableValidator executableValidator = validator.forExecutables();
+        // 构造要验证的方法对象
+        UserInfoService service = new UserInfoService();
+        Method method = service.getClass().getMethod("getUserInfo");
+        // 调用方法得到返回值
+        Object invoke = method.invoke(service);
+        // 校验方法返回值是否符合约束
+        otherSet = executableValidator.validateReturnValue(service, method, invoke);
+    }
+
+    //对构造函数的输入参数进行校验
+    @Test
+    public void constructorValidation() throws NoSuchMethodException {
+        // 获取校验执行器
+        ExecutableValidator executableValidator = validator.forExecutables();
+        // 获取构造函数
+        Constructor<UserInfoService> constructor = UserInfoService.class.getConstructor(UserInfo.class);
+        Object[] paramObjects = new Object[]{new UserInfo()};
+        //校验构造函数
+        otherSet = executableValidator.validateConstructorParameters(constructor, paramObjects);
+    }
+
+    /**
+     * 自定义手机号验证器
+     */
+    @Test
+    public void customPhoneValidation(){
+        // 验证器对对象进行验证
+        set = validator.validate(userInfo);
     }
 }

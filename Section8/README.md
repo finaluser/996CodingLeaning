@@ -87,11 +87,20 @@ SpringValidation在HibernateValidation的基础上对其进行了二次封装,�
 - 校验返回值
 - 校验构造方法
 
+- validation.UserInfoService
+- validation.UserInfo
+- validation.ValidationTest
 
+# 验证的步骤
+1. 约束注解的定义(验证框架来做)
+2. 约束验证规则(验证框架来做)
+3. 约束注解声明
+4. 约束验证流程
 
-
-
-
-
+# 实战案例:自定义手机号约束注解
+- 定义@interfacePhone注解
+- 实现约束验证器PhoneValidator.java
+- 声明@Phone约束验证
+- 执行手机号约束验证流程
 
 
