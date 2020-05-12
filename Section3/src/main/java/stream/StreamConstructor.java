@@ -2,6 +2,7 @@ package stream;
 
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
 import org.junit.jupiter.api.Test;
+import support.Sku;
 
 import java.io.IOException;
 import java.io.Serializable;
