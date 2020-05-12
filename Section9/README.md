@@ -92,9 +92,11 @@ POJO TO JSON(李大麦)
 
 #驼峰转换工具
 CAMELCASE
+- 快捷键Alt+Shift+U
 
 # 生成对象所有的set方法
 GeneratorAllSet(被生成的对象必须具有Set方法,或者Lombok注解)
+- 快捷键Alt+Enter
 
 # 可执行SQL查看
 Mybatis Log Plugin
