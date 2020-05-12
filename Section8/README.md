@@ -103,4 +103,9 @@ SpringValidation在HibernateValidation的基础上对其进行了二次封装,�
 - 声明@Phone约束验证
 - 执行手机号约束验证流程
 
+案例
+- validation.PhoneValidator
+- validation.Phone
+- validation.ValidationTest
+
 
