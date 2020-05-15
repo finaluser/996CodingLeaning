@@ -23,7 +23,7 @@ public class VersionTest {
     @Test
     public void filterSku() {
         List<Sku> cartSkuList = CartService.getCartSkuList();
-        List<Sku> skus = CartService.filterSku(cartSkuList, SkuCategoryEnum.DIGITAL, 22.2, false);
+        List<Sku> skus = CartService.filterSku(cartSkuList, SkuCategoryEnum.DIGITAL, 999.0, false);
         System.out.println(JSON.toJSONString(skus, true));
     }
 

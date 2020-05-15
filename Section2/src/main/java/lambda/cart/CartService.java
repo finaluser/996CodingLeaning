@@ -73,7 +73,7 @@ public class CartService {
      * @param cartSkuList
      * @param categoryEnum
      * @param totalPrice
-     * @param categoryOrPrice
+     * @param categoryOrPrice false:使用价格过滤,true使用分类
      * @return
      */
     public static List<Sku> filterSku(
